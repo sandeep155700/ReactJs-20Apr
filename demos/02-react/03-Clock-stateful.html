@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.4/umd/react.development.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.4/umd/react-dom.development.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        
+        <script type="text/babel">
+            class Clock extends React.Component {
+                constructor( props ) {
+                    console.log( 'props = ', props );
+                    // This is within React.Component cnstr - this.props = props;
+                    super( props );
+
+                    // state is set on an instance property called state
+                    this.state = {
+                        currentDate: new Date(),
+                        x: 1
+                    };
+                }
+
+                render() {
+                    return <div>{ this.state.currentDate.toTimeString() }</div>;
+                }
+
+                // called once after the inital render and the element mounting in the DOM
+                componentDidMount() {
+                    setInterval(() => {
+                        this.setState({ // this is merged with current
+                            currentDate: new Date()
+                        });
+                    }, 1000);
+                }
+            }
+
+            ReactDOM.render( <Clock />, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>

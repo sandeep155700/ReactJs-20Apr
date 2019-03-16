@@ -43,16 +43,34 @@
 
             // JSX to create React elements
             // JSX looks like HTML but is actually JS
+            // The React element is a simplified representation of a DOM node
+            // React elements are immutable - cannot be modified
             const h1El = (
                 <h1 id="intro" title="Introduction to React">
                     Hello React
-                    <div>React is a front-end library for building UI</div>
+                    <div name="some-div">React is a front-end library for building UI</div>
                 </h1>
             );
+
+            console.dir( h1El );
+
+            // React elements are immutable
+            // h1El.props = {};
+            // h1El.type = 'h2';
             
             // Pass the react element to ReactDOM.render() and tell which HTML DOM node it has to go within
             // Internally, a h1 DOM node is created for the React element and added to the root
             ReactDOM.render( h1El, document.getElementById( 'root' ) );
+
+            setTimeout(() => {
+                const h1El2 = (
+                    <h1 id="intro" title="Introduction to React">
+                        Hello World
+                        <div name="some-div">React is a front-end library for building UI</div>
+                    </h1>
+                );
+                ReactDOM.render( h1El2, document.getElementById( 'root' ) );
+            }, 5000);
         </script>
     </body>
 </html>
