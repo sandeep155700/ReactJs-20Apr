@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
         <div id="root"></div>
@@ -19,31 +20,95 @@
 
         <script type="text/babel">
             class ProductCatalog extends React.Component {
-                /**
-                 * React.Fragment avoids extra enclosing div container 
-                 */
+                constructor( props ) {
+                    super( props );
+                    
+                    this.state = {
+                        items: []
+                    };
+                }
+
+                // iteration using for loop
+                // getItems() {
+                //     // array map is usually used
+                //     let itemsEls = [];
+                    
+                //     for( let i = 0; i < this.state.items.length; i++ ) {
+                //         let { imageUrl, name, description, price, starRating } = this.state.items[i];
+                //         itemsEls.push(
+                //             <tr>
+                //                 <td><img src={imageUrl} /></td>
+                //                 <td>{name}</td>
+                //                 <td>{description}</td>
+                //                 <td>{price}</td>
+                //                 <td>{starRating}</td>
+                //             </tr>
+                //         );
+                //     }
+                    
+                //     return itemsEls;
+                // }
+
+                // iteration using map
+                // getItems() {
+                //     return this.state.items.map( item => (
+                //             <tr>
+                //                 <td><img src={item.imageUrl} /></td>
+                //                 <td>{item.name}</td>
+                //                 <td>{item.description}</td>
+                //                 <td>{item.price}</td>
+                //                 <td>{item.starRating}</td>
+                //             </tr>
+                //         )
+                //     );
+                // }
+                
+                // React.Fragment avoids extra enclosing div container 
                 render() {
+                    const productImageStyle = {
+                        width: '25%',
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        display: 'block'
+                    };
+
                     return (
                         <React.Fragment>
-                            <h1>Product Catalog</h1>
-                            <hr />
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Price</th>
-                                        <th>Rating</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                            <div className="container">
+                                <h1>Product Catalog</h1>
+                                <hr />
+                                <table className="table table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr><th>Image</th><th>Name</th><th>Description</th><th>Price</th><th>Rating</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            this.state.items.map( item => (
+                                                    <tr>
+                                                        <td><img src={item.imageUrl} style={productImageStyle} /></td>
+                                                        <td>{item.name}</td>
+                                                        <td>{item.description}</td>
+                                                        <td>{item.price}</td>
+                                                        <td>{item.starRating}</td>
+                                                    </tr>
+                                                )
+                                            )
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </React.Fragment>
                     );
                 }
 
                 componentDidMount() {
-                    axios.get( 'https://awesome-store-server.herokuapp.com/products' );
+                    // axios methods return promise
+                    axios.get( 'https://awesome-store-server.herokuapp.com/products' )
+                        .then( response => {
+                            this.setState({
+                                items: response.data
+                            });
+                        });
                 }
             }
 
