@@ -1,6 +1,10 @@
 # react-capgemini-mar-16-17-2019
 Two-day React training with introduction to Redux.
 
+## Store server
+- Products endpoint - https://awesome-store-server.herokuapp.com/products
+- Product detail endpoint - https://awesome-store-server.herokuapp.com/products/1
+
 ## Credentials for machines in Training room (G-38)
 __username__: .\temp
 __password__: Pass1234

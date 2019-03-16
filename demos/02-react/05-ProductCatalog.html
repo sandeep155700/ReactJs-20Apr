@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.4/umd/react.development.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.4/umd/react-dom.development.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+        <script type="text/babel">
+            class ProductCatalog extends React.Component {
+                /**
+                 * React.Fragment avoids extra enclosing div container 
+                 */
+                render() {
+                    return (
+                        <React.Fragment>
+                            <h1>Product Catalog</h1>
+                            <hr />
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Rating</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </React.Fragment>
+                    );
+                }
+
+                componentDidMount() {
+                    axios.get( 'https://awesome-store-server.herokuapp.com/products' );
+                }
+            }
+
+            ReactDOM.render( <ProductCatalog />, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>

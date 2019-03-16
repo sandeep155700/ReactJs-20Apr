@@ -28,16 +28,26 @@
 
                 increment() {
                     console.log( this );
+
+                    this.setState({
+                        counter: this.state.counter + 1
+                    });
                 }
                 
                 decrement() {
                     console.log( this );
+
+                    this.setState({
+                        counter: this.state.counter - 1
+                    });
                 }
 
                 render() {
+                    /* Exercise: increment / decrement by the amount within input box */
                     return (
                         <div>
                             {this.state.counter}
+                            <input type="number" />
                             <button onClick={this.increment.bind(this)}>+</button>
                             <button onClick={this.decrement.bind(this)}>-</button>
                         </div>
