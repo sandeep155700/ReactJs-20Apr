@@ -1,6 +1,10 @@
 # react-capgemini-mar-16-17-2019
 Two-day React training with introduction to Redux.
 
+## Credentials for machines in Training room (G-38)
+__username__: .\temp
+__password__: Pass1234
+
 ## Training outline
 ### Pre-requisites
 - ES2015 (ES6) for React
