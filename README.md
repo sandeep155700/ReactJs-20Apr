@@ -81,3 +81,6 @@ It is available for Windows, Mac OSX and popular Linux distributions.
 Chrome: https://www.google.com/chrome/browser/desktop/index.html  
 Firefox: https://www.mozilla.org/en-US/firefox/new/  
 5.	__IMPORTANT__: Additionally, it would be great if participants have as little restrictions (as permissible) on internet access during the session.
+
+## References
+- [Create React App website](https://facebook.github.io/create-react-app/)
