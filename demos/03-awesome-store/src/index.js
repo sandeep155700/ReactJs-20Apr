@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductCatalog from './ProductCatalog';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 
-ReactDOM.render(<ProductCatalog />, document.getElementById('root'));
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+ReactDOM.render(
+    <BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));

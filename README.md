@@ -84,3 +84,4 @@ Firefox: https://www.mozilla.org/en-US/firefox/new/
 
 ## References
 - [Create React App website](https://facebook.github.io/create-react-app/)
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)

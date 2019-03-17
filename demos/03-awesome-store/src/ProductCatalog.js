@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const INITIALIZING = 'Please wait. App is being initialized...';
 const FETCH_PRODUCTS = 'Please wait. Products are being fetched...';
@@ -60,7 +61,11 @@ class ProductCatalog extends React.Component {
                                         this.state.items.map( item => (
                                                 <tr>
                                                     <td><img src={item.imageUrl} style={productImageStyle} /></td>
-                                                    <td>{item.name}</td>
+                                                    <td>
+                                                        <Link to={"/catalog/" + item.id}>
+                                                            {item.name}
+                                                        </Link>
+                                                    </td>
                                                     <td>{item.description}</td>
                                                     <td>{item.price}</td>
                                                     <td>{item.starRating}</td>
