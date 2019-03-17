@@ -2,6 +2,8 @@
 Two-day React training with introduction to Redux.
 
 ## Further exploration
+- [Handling Async action - for example Ajax calls, in React app with Redux](https://redux.js.org/advanced/async-actions)
+- [The Thunk library - redux-thunk, for dispatching async actions](https://github.com/reduxjs/redux-thunk)
 - [react-redux library for working with React and Redux](https://react-redux.js.org/)
 
 ## Store server
