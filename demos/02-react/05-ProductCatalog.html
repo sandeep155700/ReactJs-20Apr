@@ -132,28 +132,60 @@
                 }
 
                 componentDidMount() {
-                    this.setState({
-                        status: FETCH_PRODUCTS
-                    });
-
-                    // axios methods return promise
-                    axios.get( 'https://awesome-store-server.herokuapp.com/products' )
-                        .then( response => {
-                            this.setState({
-                                items: response.data,
-                                status: FETCHED_PRODUCTS
-                            });
-                        })
-                        .catch( error => {
-                            this.setState({
-                                error: error,
-                                status: FETCH_PRODUCTS_ERROR
-                            });
-                        });
+                    // this.setState can be sync (state changes immediately) or async (state changes later)
+                    // the second argument is a callback function which is called immediately after React actually changes the state
+                    this.setState(
+                        {
+                            status: FETCH_PRODUCTS
+                        },
+                        () => { // the callback function
+                            // axios methods return promise
+                            axios.get( 'https://awesome-store-server.herokuapp.com/products' )
+                                .then( response => {
+                                    this.setState({
+                                        items: response.data,
+                                        status: FETCHED_PRODUCTS
+                                    });
+                                    console.log( 'after setState call' );
+                                })
+                                .catch( error => {
+                                    this.setState({
+                                        error: error,
+                                        status: FETCH_PRODUCTS_ERROR
+                                    });
+                                });
+                        }
+                    );
                 }
             }
 
             ReactDOM.render( <ProductCatalog />, document.getElementById( 'root' ) );
+
+            // {
+            //     counter: 32
+            // }
+
+            // // sync
+            // this.setState(curState => {
+            //     return {
+            //         counter: curState.counter + 1; // 1
+            //     }
+            // })
+            // this.setState(curState => {
+            //     return {
+            //         counter: curState.counter + 10; // 11
+            //     };
+            // })
+            // this.setState(curState => {
+            //     return {
+            //         counter: curState.counter + 1; // 12
+            //     };
+            // })
+            // this.setState(curState => {
+            //     return {
+            //         counter: curState.counter + 20; // 32
+            //     };
+            // })
         </script>
     </body>
 </html>

@@ -29,17 +29,19 @@
                 increment() {
                     console.log( this );
 
-                    this.setState({
-                        counter: this.state.counter + 1
-                    });
+                    // new state depends on current state - so we need to use function style of setting state
+                    // use () => ( { x : 1 } ) to define an function that returns an object
+                    this.setState(curState => ({
+                        counter: curState.counter + 1
+                    }));
                 }
                 
                 decrement() {
                     console.log( this );
 
-                    this.setState({
-                        counter: this.state.counter - 1
-                    });
+                    this.setState(curState => ({
+                        counter: curState.counter - 1
+                    }));
                 }
 
                 render() {
