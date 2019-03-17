@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            Counter: <span id="counter"></span>
+            <button onclick="increment();">+</button>
+            <button onclick="decrement();">-</button>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.min.js"></script>
+
+        <script>
+            // action constants
+            const INCREMENT = 'INCREMENT';
+            const DECREMENT = 'DECREMENT';
+
+            // action creators
+            const incrementAC = () => {
+                return {
+                    type: INCREMENT
+                };
+            }
+            
+            const decrementAC = () => {
+                return {
+                    type: DECREMENT
+                };
+            }
+
+            // Rules: Reducers are "pure functions"
+            // 1. should not modify incoming inputs
+            // 2. it should alwys return the same output for the same inputs (cannot make Ajax calls)
+            // 3. It should not use any global variables and function
+            const counterReducer = ( curState, action ) => {
+                let newState;
+
+                switch( action.type ) {
+                    case INCREMENT:
+                        newState = {
+                            counter: curState.counter + 1
+                        };
+                        break;
+                    case DECREMENT:
+                        newState = {
+                            counter: curState.counter - 1
+                        };
+                        break;
+                    default:
+                        newState = curState;
+                }
+
+                return newState;
+            }
+
+            const store = Redux.createStore(
+                counterReducer,
+                {
+                    counter: 0
+                },
+                /* enhancers */
+            );
+
+            const increment = () => {
+                store.dispatch( incrementAC() );
+            };
+
+            const decrement = () => {
+                store.dispatch( decrementAC() );
+            };
+            
+            const render = () => document.getElementById( 'counter' ).innerHTML = store.getState().counter;
+
+            render();
+            store.subscribe( render ); // render will be called when state changes
+        </script>
+    </body>
+</html>
