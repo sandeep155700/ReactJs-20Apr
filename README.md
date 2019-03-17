@@ -1,6 +1,9 @@
 # react-capgemini-mar-16-17-2019
 Two-day React training with introduction to Redux.
 
+## Further exploration
+- [react-redux library for working with React and Redux](https://react-redux.js.org/)
+
 ## Store server
 - Products endpoint - https://awesome-store-server.herokuapp.com/products
 - Product detail endpoint - https://awesome-store-server.herokuapp.com/products/1
