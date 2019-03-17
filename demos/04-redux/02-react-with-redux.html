@@ -7,17 +7,43 @@
         <title>Document</title>
     </head>
     <body>
-        <div>
-            Counter: <span id="counter"></span>
-            <input type="number" />
-            <button onclick="increment();">+</button>
-            <button onclick="decrement();">-</button>
-        </div>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.4/umd/react.development.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.4/umd/react-dom.development.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.1/redux.min.js"></script>
+        
+        <script type="text/babel">
+            class Counter extends React.Component {
+                constructor( props ) {
+                    super( props );
 
-        <script>
-            // Exercise: 
+                    store.subscribe( this.forceUpdate.bind( this ) );
+                }
+
+                increment() {
+                    store.dispatch( incrementAC() );
+                }
+                
+                decrement() {
+                    store.dispatch( decrementAC() );
+                }
+
+                render() {
+                    return (
+                        <div>
+                            {store.getState().counter}
+                            <input type="number" />
+                            <button onClick={this.increment.bind(this)}>+</button>
+                            <button onClick={this.decrement.bind(this)}>-</button>
+                        </div>
+                    )
+                }
+            }
 
             // action constants
             const INCREMENT = 'INCREMENT';
@@ -69,21 +95,10 @@
                 {
                     counter: 0
                 },
-                /* enhancers */
+                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
             );
 
-            const increment = () => {
-                store.dispatch( incrementAC() );
-            };
-
-            const decrement = () => {
-                store.dispatch( decrementAC() );
-            };
-            
-            const render = () => document.getElementById( 'counter' ).innerHTML = store.getState().counter;
-
-            render();
-            store.subscribe( render ); // render will be called when state changes
+            ReactDOM.render( <Counter counter={10} />, document.getElementById( 'root' ) );
         </script>
     </body>
 </html>
