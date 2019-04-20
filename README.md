@@ -1,4 +1,4 @@
-# react-capgemini-mar-16-17-2019
+# react-capgemini-april-20-21-2019
 Two-day React training with introduction to Redux.
 
 ## Further exploration
